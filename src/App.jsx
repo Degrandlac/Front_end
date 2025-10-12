@@ -10,14 +10,7 @@ function App() {
   const [options, setOptions] = useState([]);
   const [audioSrc, setAudioSrc] = useState("");
 
-  // --- Automatically play audio when audioSrc changes ---
-  React.useEffect(() => {
-    if (audioSrc) {
-      const audio = new Audio(audioSrc);
-      audio.play().catch(err => console.error("Audio play failed:", err));
-    }
-  }, [audioSrc]);
-
+  // Start a new call
   const startCall = async () => {
     setCallStatus("Calling...");
     setCurrentPath("");
@@ -26,6 +19,7 @@ function App() {
     setCallStatus("In IVR");
   };
 
+  // Hang up the call
   const hangUp = () => {
     setCallStatus("Call Ended");
     setAudioSrc("");
@@ -34,6 +28,7 @@ function App() {
     setPhoneNumber("");
   };
 
+  // Handle number button press
   const handleDial = async (digit) => {
     if (callStatus === "Idle") {
       setPhoneNumber((prev) => prev + digit);
@@ -50,6 +45,7 @@ function App() {
           method: "POST",
           body: formData,
         });
+
         const data = await res.json();
         setCurrentPath(data.path || "");
         setOptions(data.options || []);
@@ -64,10 +60,18 @@ function App() {
     }
   };
 
+  // Delete last digit
+  const handleDelete = () => {
+    if (callStatus === "Idle") {
+      setPhoneNumber((prev) => prev.slice(0, -1));
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col items-center p-4">
       <h1 className="text-3xl text-white mb-4">Call Center Simulator</h1>
       <PhoneDisplay number={phoneNumber} status={callStatus} />
+
       <div className="flex space-x-4 mt-4">
         <button
           onClick={startCall}
@@ -83,7 +87,7 @@ function App() {
         </button>
       </div>
 
-      <DialPad onPress={handleDial} />
+      <DialPad onPress={handleDial} onDelete={handleDelete} />
     </div>
   );
 }
