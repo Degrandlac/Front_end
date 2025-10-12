@@ -11,13 +11,13 @@ const DialPad = ({ onPress, onDelete }) => {
   return (
     <div className="mt-8">
       <div className="grid grid-cols-3 gap-4 max-w-xs">
-        {digits.flat().map((digit) => (
+        {digits.flat().map((body) => (
           <button
-            key={digit}
-            onClick={() => onPress(digit)}
-            className="bg-gray-700 text-white py-6 text-2xl font-bold rounded-lg hover:bg-gray-600 shadow-md"
+            key={b}
+            className="w-20 h-20 bg-gray-800 text-white text-2xl rounded-full hover:bg-green-600"
+            onClick={() => onPress(b)}
           >
-            {digit}
+            {b}
           </button>
         ))}
       </div>
