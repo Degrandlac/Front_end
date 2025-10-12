@@ -1,0 +1,91 @@
+import React, { useState } from "react";
+import { API_CONFIG } from "./config";
+import DialPad from "./components/DialPad";
+import PhoneDisplay from "./components/PhoneDisplay";
+
+function App() {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [callStatus, setCallStatus] = useState("Idle");
+  const [currentPath, setCurrentPath] = useState("");
+  const [options, setOptions] = useState([]);
+  const [audioSrc, setAudioSrc] = useState("");
+
+  // --- Automatically play audio when audioSrc changes ---
+  React.useEffect(() => {
+    if (audioSrc) {
+      const audio = new Audio(audioSrc);
+      audio.play().catch(err => console.error("Audio play failed:", err));
+    }
+  }, [audioSrc]);
+
+  const startCall = async () => {
+    setCallStatus("Calling...");
+    setCurrentPath("");
+    setOptions([]);
+    setAudioSrc(`${API_CONFIG.IVR}/audio/Welcome_message.wav`);
+    setCallStatus("In IVR");
+  };
+
+  const hangUp = () => {
+    setCallStatus("Call Ended");
+    setAudioSrc("");
+    setCurrentPath("");
+    setOptions([]);
+    setPhoneNumber("");
+  };
+
+  const handleDial = async (digit) => {
+    if (callStatus === "Idle") {
+      setPhoneNumber((prev) => prev + digit);
+      return;
+    }
+
+    if (callStatus === "In IVR") {
+      try {
+        const formData = new FormData();
+        formData.append("option", digit);
+        formData.append("current_path", currentPath);
+
+        const res = await fetch(`${API_CONFIG.IVR}/ivr/select`, {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        setCurrentPath(data.path || "");
+        setOptions(data.options || []);
+        setAudioSrc(`${API_CONFIG.IVR}/audio/${data.audio}`);
+
+        if (digit === "3") {
+          setCallStatus("Agent");
+        }
+      } catch (err) {
+        console.error("IVR error:", err);
+      }
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-900 flex flex-col items-center p-4">
+      <h1 className="text-3xl text-white mb-4">Call Center Simulator</h1>
+      <PhoneDisplay number={phoneNumber} status={callStatus} />
+      <div className="flex space-x-4 mt-4">
+        <button
+          onClick={startCall}
+          className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-800"
+        >
+          Call
+        </button>
+        <button
+          onClick={hangUp}
+          className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-800"
+        >
+          Hang Up
+        </button>
+      </div>
+
+      <DialPad onPress={handleDial} />
+    </div>
+  );
+}
+
+export default App;
