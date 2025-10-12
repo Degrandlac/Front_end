@@ -10,7 +10,7 @@ const DialPad = ({ onPress, onDelete }) => {
 
   return (
     <div className="mt-6">
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-4">
         {digits.flat().map((digit) => (
           <button
             key={digit}

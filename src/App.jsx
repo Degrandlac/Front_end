@@ -72,16 +72,16 @@ function App() {
       <h1 className="text-3xl text-white mb-4">Call Center Simulator</h1>
       <PhoneDisplay number={phoneNumber} status={callStatus} />
 
-      <div className="flex space-x-4 mt-4">
+      <div className="flex space-x-6 mt-6">
         <button
           onClick={startCall}
-          className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-800"
+          className="bg-green-600 text-white px-8 py-4 text-xl font-bold rounded-xl hover:bg-green-800 shadow-lg"
         >
           Call
         </button>
         <button
           onClick={hangUp}
-          className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-800"
+          className="bg-red-600 text-white px-8 py-4 text-xl font-bold rounded-xl hover:bg-red-800 shadow-lg"
         >
           Hang Up
         </button>
