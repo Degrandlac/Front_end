@@ -9,8 +9,8 @@ const DialPad = ({ onPress, onDelete }) => {
   ];
 
   return (
-    <div className="mt-6">
-      <div className="grid grid-cols-3 gap-4">
+    <div className="mt-8">
+      <div className="grid grid-cols-3 gap-4 max-w-xs">
         {digits.flat().map((digit) => (
           <button
             key={digit}
@@ -25,8 +25,8 @@ const DialPad = ({ onPress, onDelete }) => {
       {/* Delete button */}
       <button
         onClick={onDelete}
-        className="mt-6 w-full bg-red-600 text-white py-4 text-xl font-bold rounded-lg hover:bg-red-800 shadow-md"
-      >
+        className="mt-6 w-20 h-20 bg-red-600 text-white text-xl font-bold rounded-full hover:bg-red-800 shadow-md flex items-center justify-center"
+>
         Delete
       </button>
     </div>
