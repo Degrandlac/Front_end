@@ -1,36 +1,32 @@
 import React from "react";
 
-const DialPad = ({ onPress, onDelete }) => {
-  const digits = [
-    ["1", "2", "3"],
-    ["4", "5", "6"],
-    ["7", "8", "9"],
-    ["*", "0", "#"]
-  ];
+const digits = [
+  ["1","2","3"],
+  ["4","5","6"],
+  ["7","8","9"],
+  ["*","0","#"]
+];
 
+export default function DialPad({ onPress, onDelete }) {
   return (
-    <div className="mt-8">
-      <div className="grid grid-cols-3 gap-4 max-w-xs">
-        {digits.flat().map((digit) => (
-          <button
-            key={digits}
-            className="w-20 h-20 bg-gray-800 text-white text-2xl rounded-full hover:bg-green-600"
-            onClick={() => onPress(digit)}
-          >
-            {digit}
-          </button>
-        ))}
-      </div>
+    <div className="grid grid-cols-3 gap-4 mt-6">
+      {digits.flat().map((digit, index) => (
+        <button
+          key={digit + index} // unique key
+          className="w-20 h-20 bg-gray-800 text-white text-2xl rounded-full hover:bg-green-600"
+          onClick={() => onPress(digit)}
+        >
+          {digit}
+        </button>
+      ))}
 
       {/* Delete button */}
       <button
+        className="col-span-3 bg-red-600 text-white px-6 py-2 rounded hover:bg-red-800"
         onClick={onDelete}
-        className="mt-6 w-20 h-20 bg-red-600 text-white text-xl font-bold rounded-full hover:bg-red-800 shadow-md flex items-center justify-center"
->
+      >
         Delete
       </button>
     </div>
   );
-};
-
-export default DialPad;
+}

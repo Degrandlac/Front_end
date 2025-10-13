@@ -1,10 +1,12 @@
 import React from "react";
 
-export default function PhoneDisplay({ number, status }) {
+const PhoneDisplay = ({ number, status }) => {
   return (
-    <div className="bg-gray-900 text-white p-4 rounded-md text-center">
-      <div className="text-xl">Number: {number}</div>
-      <div className="text-sm mt-2">{status}</div>
+    <div className="bg-gray-800 text-white p-4 rounded w-full max-w-md text-center">
+      <p className="text-lg">Phone: {number || "__________"}</p>
+      <p className="text-sm mt-2">Status: {status}</p>
     </div>
   );
-}
+};
+
+export default PhoneDisplay;
