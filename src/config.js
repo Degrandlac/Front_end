@@ -1,6 +1,6 @@
 export const API_CONFIG = {
-  IVR: "http://localhost:8003",      // IVR service
-  STT: "http://localhost:8001/transcribe",      // Speech-to-text service
-  TTS: "http://localhost:8002/speak",      // Text-to-speech service
-  CHAT: "http://localhost:8000/chat",     // Chat / main backend server
+  IVR: "https://clean-shoes-fry.loca.lt",                 // IVR service
+  STT: "https://452324731e92.ngrok-free.app/transcribe",  // Speech-to-text service
+  TTS: "https://d927d05aaaf9.ngrok-free.app/speak",       // Text-to-speech service
+  CHAT: "https://05edacfab1f8.ngrok-free.app/chat",       // Chat / main backend server
 };
