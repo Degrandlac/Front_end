@@ -1,6 +1,6 @@
 export const API_CONFIG = {
-  IVR: "https://blue-eggs-return.loca.lt",                 // IVR service
-  STT: "https://7168b5bae06b.ngrok-free.app/transcribe",  // Speech-to-text service
-  TTS: "https://31f00986929e.ngrok-free.app/speak",       // Text-to-speech service
-  CHAT: "https://ec2b5f27d1a8.ngrok-free.app/chat",       // Chat / main backend server
+  IVR: "https://brave-bananas-invite.loca.lt",                 // IVR service
+  STT: "https://e5ec64e84c84.ngrok-free.app/transcribe",  // Speech-to-text service
+  TTS: " https://83860926ca5c.ngrok-free.app/speak",       // Text-to-speech service
+  CHAT: "https://1601993577c5.ngrok-free.app/chat",       // Chat / main backend server
 };
