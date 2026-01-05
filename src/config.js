@@ -1,6 +1,6 @@
 export const API_CONFIG = {
-  IVR: "https://rare-dingos-listen.loca.lt",                 // IVR service
-  STT: "https://a72478ff9733.ngrok-free.app/transcribe",  // Speech-to-text service
-  TTS: "https://59d9e51f1f14.ngrok-free.app/speak",       // Text-to-speech service
-  CHAT: "https://fb0d7783e603.ngrok-free.app/chat",       // Chat / main backend server
+  IVR: "https://nasty-days-give.loca.lt",                 // IVR service
+  STT: "https://6d5f355a2414.ngrok-free.app/transcribe",  // Speech-to-text service
+  TTS: "https://00c498655572.ngrok-free.app/speak",       // Text-to-speech service
+  CHAT: "https://1c7e3c94b655.ngrok-free.app/chat",       // Chat / main backend server
 };
